@@ -2,7 +2,7 @@
 *  Copyright (c) 2013, Sandro Alves Peres
 *  All rights reserved.
 *
-*  Date: 21/11/2013
+*  Date: 11/21/2013
 *  http://www.zend.com/en/yellow-pages/ZEND022656
 */ 
 
@@ -13,7 +13,8 @@
         label_off: 'OFF',
         label_size: 12,
         width: 60,
-        height: 22  
+        height: 22,
+        callback: null
     };
 
     var settings = {};
@@ -35,6 +36,8 @@
                 {
                     return;
                 }
+
+                var self = this;
                 
                 // Settings
                 // ************************************************************* 
@@ -72,6 +75,8 @@
                 // Click
                 // ************************************************************* 
                 
+                $(self).data('callback', settings.callback);
+                
                 obj.unbind('click');
                 obj.click(function()
                 {
@@ -87,6 +92,11 @@
                         $(this).children().first().animate({left: '-6%'}, 150, 'linear', function()
                         {
                             obj.prev().removeAttr('checked');
+                            
+                            if( typeof $(self).data('callback') == 'function' )
+                            {
+                                $(self).data('callback').apply(self);
+                            }                             
                         });                         
                     }
                     else
@@ -96,8 +106,13 @@
                         $(this).children().first().animate({left: '48%'}, 150, 'linear', function()
                         {
                             obj.prev().attr('checked', 'checked');
+
+                            if( typeof $(self).data('callback') == 'function' )
+                            {
+                                $(self).data('callback').apply(self);
+                            } 
                         });   
-                    }
+                    }                    
                 });
 
                 // MouseDown
