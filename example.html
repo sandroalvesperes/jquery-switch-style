@@ -14,20 +14,24 @@
 		{
 		
 			$('#switch1').switchStyle({
-                label_on: 'ON',
-                label_off: 'OFF',
-                label_size: 12,
-                width: 80,
-                height: 30 
-            });	
+		                label_on: 'ON',
+		                label_off: 'OFF',
+		                label_size: 12,
+		                width: 80,
+		                height: 30 
+            		});	
             
 			$('#switch2').switchStyle({
-                label_on: 'Active',
-                label_off: 'Inactive',
-                label_size: 12,
-                width: 150,
-                height: 30 
-            });	            
+		                label_on: 'Active',
+		                label_off: 'Inactive',
+		                label_size: 12,
+		                width: 150,
+		                height: 30,
+				callback: function()
+				{
+					alert('Working with callback: ' + $(this).is(':checked'));
+				}
+	            	});	            
 			
 		});
 	</script>
@@ -63,10 +67,10 @@
 			margin-bottom: 20px;
 		}		
 		
-        .comments {
-            font-style: italic;
-            color: #808080;
-        }
+	        .comments {
+	            font-style: italic;
+	            color: #808080;
+	        }
         
 		label {
 			color: #202020;
@@ -102,7 +106,7 @@
 
 	<p>&nbsp;</p>
 	
-    <p><input type="checkbox" name="switch2" id="switch2" value="2" checked="checked" disabled="disabled" /></p>
+    	<p><input type="checkbox" name="switch2" id="switch2" value="2" checked="checked" disabled="disabled" /></p>
 	<p>
 		<a href="javascript:void(0);" onclick="$('#switch2').switchStyle('enable');">Enable</a> - 
 		<a href="javascript:void(0);" onclick="$('#switch2').switchStyle('disable');">Disable</a> -
@@ -120,7 +124,7 @@
 		<a href="javascript:void(0);" onclick="$('input:checkbox').switchStyle('off');">Uncheck</a>
 	</p>    
     
-    <p>&nbsp;</p>
+    	<p>&nbsp;</p>
     
 	<p class="title">Create</p>
 	<p class="code">
@@ -133,7 +137,11 @@
             <br />&nbsp; &nbsp; &nbsp; &nbsp;label_off: 'OFF',
             <br />&nbsp; &nbsp; &nbsp; &nbsp;label_size: 12,
             <br />&nbsp; &nbsp; &nbsp; &nbsp;width: 80,
-            <br />&nbsp; &nbsp; &nbsp; &nbsp;height: 30         
+            <br />&nbsp; &nbsp; &nbsp; &nbsp;height: 30,
+            <br />&nbsp; &nbsp; &nbsp; &nbsp;callback: function()
+            <br />&nbsp; &nbsp; &nbsp; &nbsp;{
+            <br />&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;alert('Checked: ' + $(this).is(':checked'));
+            <br />&nbsp; &nbsp; &nbsp; &nbsp;}   			
         <br />}); 
 	</p>    
 	
@@ -161,7 +169,7 @@
 	
 	<p class="title-rule">Rules</p>
 	<p class="rule">
-		- Do not include a "label" element for the checkbox. Use the plugin functions instead<br />
+	- Do not include a "label" element for the checkbox. Use the plugin functions instead<br />
         - If you want more then one Switch Button inline, change the CSS property display in ".switch-wrapper" class to inline-block
 	</p>
 	
